@@ -21,7 +21,8 @@
   --c-sky-2: #182133;
   --c-moonlight: #F2DDA8;
   --c-amber: #F5B764;
-  --c-dusk: linear-gradient(160deg, #14113A 0%, #2E2780 38%, #5B3399 68%, #9A4A22 100%);
+  /* 2.1: the night sky of the app (Night Window), not the old indigo dusk. */
+  --c-dusk: linear-gradient(170deg, #05060E 0%, #0E1430 45%, #1C1A3C 75%, #3A2A2E 100%);
 
   /* Semantic */
   --bg: var(--c-paper);
@@ -131,7 +132,7 @@ p { margin: 0; }
 .btn-primary:hover { background: var(--accent-hover); color: var(--on-accent); }
 
 /* Hero */
-.hero { position: relative; overflow: hidden; color: #fff; background-color: #2E2780; background-image: var(--c-dusk); isolation: isolate; }
+.hero { position: relative; overflow: hidden; color: #fff; background-color: #0E1430; background-image: var(--c-dusk); isolation: isolate; }
 .hero::after { content: ""; position: absolute; inset: auto -10% -40% -10%; height: 70%; background: radial-gradient(closest-side, rgb(245 183 100 / .35), transparent); z-index: -1; }
 .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(2rem, 5vw, 4rem); align-items: center; padding-block: clamp(3.5rem, 2rem + 6vw, 7rem); }
 .hero h1 { font-size: var(--fs-hero); font-weight: 600; }
@@ -263,7 +264,7 @@ p { margin: 0; }
 .panel { border-radius: var(--r-l); padding: clamp(1.6rem, 3vw, 2.4rem); background: var(--bg-raised); box-shadow: var(--shadow); }
 .panel h2 { font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem); margin-bottom: 1rem; }
 .panel p { color: var(--text-2); }
-.panel.dark { background-color: #2E2780; background-image: var(--c-dusk); color: #fff; }
+.panel.dark { background-color: #0E1430; background-image: var(--c-dusk); color: #fff; }
 .panel.dark p, .panel.dark li { color: rgb(255 255 255 / .82); }
 .panel ul { margin: 1.1rem 0 0; padding-left: 1.2rem; display: grid; gap: .45rem; color: var(--text-2); }
 @media (max-width: 860px) { .duo { grid-template-columns: 1fr; } }
@@ -287,7 +288,7 @@ p { margin: 0; }
 .faq h2:first-child { margin-top: 0; }
 
 /* CTA */
-.cta { text-align: center; color: #fff; background-color: #2E2780; background-image: var(--c-dusk); border-radius: var(--r-l); padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter); }
+.cta { text-align: center; color: #fff; background-color: #0E1430; background-image: var(--c-dusk); border-radius: var(--r-l); padding: clamp(2.5rem, 6vw, 4.5rem) var(--gutter); }
 .cta img.icon { width: 88px; height: 88px; border-radius: 20px; margin: 0 auto 1.25rem; box-shadow: 0 12px 30px rgb(0 0 0 / .35); }
 .cta h2 { margin-bottom: .8rem; }
 .cta p { color: rgb(255 255 255 / .82); margin-bottom: 1.75rem; }
@@ -323,3 +324,28 @@ p { margin: 0; }
   .site-header, .hero, .site-footer, .cta { display: none; }
   body { background: #fff; color: #000; }
 }
+
+/* 2.1 "Keyring": the site follows the app, which is night only since 2.1 (Night Window:
+   midnight, ember gold, the Moon keyhole). These tokens override both appearances above. */
+:root, :root:where(*) {
+  color-scheme: dark;
+  --bg: #07070D;
+  --bg-raised: #12131F;
+  --bg-sunk: #0B0B16;
+  --text: #F5EFE6;
+  --text-2: #B9B2C3;
+  --accent: #F2B35E;
+  --accent-hover: #F7C680;
+  --on-accent: #1A1206;
+  --line: rgb(255 255 255 / .12);
+  --focus: #F2B35E;
+  --shadow: 0 1px 2px rgb(0 0 0 / .4), 0 12px 32px rgb(0 0 0 / .45);
+}
+@media (prefers-color-scheme: light) {
+  :root { color-scheme: dark; --bg: #07070D; --bg-raised: #12131F; --bg-sunk: #0B0B16; --text: #F5EFE6;
+          --text-2: #B9B2C3; --accent: #F2B35E; --accent-hover: #F7C680; --on-accent: #1A1206;
+          --line: rgb(255 255 255 / .12); --focus: #F2B35E; }
+}
+.keyring-note { display: flex; gap: .8rem; align-items: baseline; padding: 1rem 1.2rem; margin-top: 1.4rem;
+  border: 1px solid rgb(242 179 94 / .45); border-radius: 18px; background: #0B0B16; }
+.keyring-note b { color: var(--accent); font-weight: 600; }
